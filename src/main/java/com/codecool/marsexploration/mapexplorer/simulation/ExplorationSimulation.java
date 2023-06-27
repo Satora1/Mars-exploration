@@ -12,7 +12,7 @@ import com.codecool.marsexploration.mapexplorer.maploader.model.Map;
 import com.codecool.marsexploration.mapexplorer.rovers.MarsRover;
 import com.codecool.marsexploration.mapexplorer.rovers.RoverDeployer;
 import com.codecool.marsexploration.mapexplorer.simulation.roveraction.Analyze;
-import com.codecool.marsexploration.mapexplorer.simulation.roveraction.Movement;
+import com.codecool.marsexploration.mapexplorer.simulation.roveraction.ExplorationMovement;
 import com.codecool.marsexploration.mapexplorer.simulation.roveraction.RoverAction;
 import com.codecool.marsexploration.mapexplorer.simulation.roveraction.Scan;
 
@@ -24,7 +24,7 @@ public class ExplorationSimulation {
 
     private SimulationContext simContext;
     private Queue <RoverAction> steps;
-    private Movement movementRoutines;
+    private ExplorationMovement movementRoutines;
     private Scan scan;
     private Analyze analyze;
     private MissionLogger missionLogger;
@@ -50,7 +50,7 @@ public class ExplorationSimulation {
         List<Routine> routineList = new ArrayList<>();
         routineList.add(new ExploringRoutine());
         routineList.add(new ReturningRoutine());
-        movementRoutines = new Movement(routineList, new ExploringRoutine());
+        movementRoutines = new ExplorationMovement(routineList, new ExploringRoutine());
 
         scan = new Scan();
 
