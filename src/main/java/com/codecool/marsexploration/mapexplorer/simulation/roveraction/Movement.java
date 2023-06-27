@@ -1,10 +1,10 @@
-package com.codecool.marsexploration.mapexplorer.exploration;
+package com.codecool.marsexploration.mapexplorer.simulation.roveraction;
 
-import com.codecool.marsexploration.mapexplorer.exploration.routines.ExploringRoutine;
-import com.codecool.marsexploration.mapexplorer.exploration.routines.Routine;
+import com.codecool.marsexploration.mapexplorer.simulation.SimulationContext;
+import com.codecool.marsexploration.mapexplorer.simulation.routines.ExploringRoutine;
+import com.codecool.marsexploration.mapexplorer.simulation.routines.Routine;
 
 import java.util.List;
-import java.util.Optional;
 
 public class Movement implements RoverAction {
     private final List<Routine> routinesList;

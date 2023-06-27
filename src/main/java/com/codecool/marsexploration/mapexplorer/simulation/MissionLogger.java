@@ -1,4 +1,4 @@
-package com.codecool.marsexploration.mapexplorer.exploration;
+package com.codecool.marsexploration.mapexplorer.simulation;
 
 import com.codecool.marsexploration.mapexplorer.logger.ConsoleLogger;
 import com.codecool.marsexploration.mapexplorer.logger.FileLogger;

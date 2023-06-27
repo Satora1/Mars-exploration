@@ -1,4 +1,4 @@
-package com.codecool.marsexploration.mapexplorer.exploration;
+package com.codecool.marsexploration.mapexplorer.simulation;
 
 public enum ExplorationOutcome {
 

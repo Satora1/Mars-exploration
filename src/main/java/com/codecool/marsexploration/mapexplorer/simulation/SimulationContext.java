@@ -1,4 +1,4 @@
-package com.codecool.marsexploration.mapexplorer.exploration;
+package com.codecool.marsexploration.mapexplorer.simulation;
 
 import com.codecool.marsexploration.mapexplorer.Configuration.Resource;
 import com.codecool.marsexploration.mapexplorer.maploader.model.Coordinate;
@@ -13,7 +13,7 @@ public class SimulationContext {
     int stepsToTimeout;
     MarsRover rover;
     Coordinate shipCoordinate;
-    Map map;
+    private final Map map;
     List<Resource> resources;
     ExplorationOutcome outcome;
 

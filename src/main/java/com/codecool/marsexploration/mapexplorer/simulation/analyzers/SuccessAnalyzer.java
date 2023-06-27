@@ -1,7 +1,7 @@
-package com.codecool.marsexploration.mapexplorer.exploration.analyzers;
+package com.codecool.marsexploration.mapexplorer.simulation.analyzers;
 
-import com.codecool.marsexploration.mapexplorer.exploration.ExplorationOutcome;
-import com.codecool.marsexploration.mapexplorer.exploration.SimulationContext;
+import com.codecool.marsexploration.mapexplorer.simulation.ExplorationOutcome;
+import com.codecool.marsexploration.mapexplorer.simulation.SimulationContext;
 
 public class SuccessAnalyzer implements OutcomeAnalyzer{
     @Override

@@ -1,16 +1,20 @@
-package com.codecool.marsexploration.mapexplorer.exploration;
+package com.codecool.marsexploration.mapexplorer.simulation;
 
 import com.codecool.marsexploration.mapexplorer.Configuration.Config;
-import com.codecool.marsexploration.mapexplorer.exploration.analyzers.OutcomeAnalyzer;
-import com.codecool.marsexploration.mapexplorer.exploration.analyzers.SuccessAnalyzer;
-import com.codecool.marsexploration.mapexplorer.exploration.analyzers.TimeoutAnalyzer;
-import com.codecool.marsexploration.mapexplorer.exploration.routines.ExploringRoutine;
-import com.codecool.marsexploration.mapexplorer.exploration.routines.ReturningRoutine;
-import com.codecool.marsexploration.mapexplorer.exploration.routines.Routine;
+import com.codecool.marsexploration.mapexplorer.simulation.analyzers.OutcomeAnalyzer;
+import com.codecool.marsexploration.mapexplorer.simulation.analyzers.SuccessAnalyzer;
+import com.codecool.marsexploration.mapexplorer.simulation.analyzers.TimeoutAnalyzer;
+import com.codecool.marsexploration.mapexplorer.simulation.routines.ExploringRoutine;
+import com.codecool.marsexploration.mapexplorer.simulation.routines.ReturningRoutine;
+import com.codecool.marsexploration.mapexplorer.simulation.routines.Routine;
 import com.codecool.marsexploration.mapexplorer.maploader.MapLoader;
 import com.codecool.marsexploration.mapexplorer.maploader.model.Map;
 import com.codecool.marsexploration.mapexplorer.rovers.MarsRover;
 import com.codecool.marsexploration.mapexplorer.rovers.RoverDeployer;
+import com.codecool.marsexploration.mapexplorer.simulation.roveraction.Analyze;
+import com.codecool.marsexploration.mapexplorer.simulation.roveraction.Movement;
+import com.codecool.marsexploration.mapexplorer.simulation.roveraction.RoverAction;
+import com.codecool.marsexploration.mapexplorer.simulation.roveraction.Scan;
 
 import java.util.ArrayList;
 import java.util.List;

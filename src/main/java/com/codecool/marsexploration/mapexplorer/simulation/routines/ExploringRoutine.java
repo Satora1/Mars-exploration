@@ -1,7 +1,7 @@
-package com.codecool.marsexploration.mapexplorer.exploration.routines;
+package com.codecool.marsexploration.mapexplorer.simulation.routines;
 
-import com.codecool.marsexploration.mapexplorer.exploration.ExplorationOutcome;
-import com.codecool.marsexploration.mapexplorer.exploration.SimulationContext;
+import com.codecool.marsexploration.mapexplorer.simulation.ExplorationOutcome;
+import com.codecool.marsexploration.mapexplorer.simulation.SimulationContext;
 import com.codecool.marsexploration.mapexplorer.maploader.model.Coordinate;
 
 import java.util.*;

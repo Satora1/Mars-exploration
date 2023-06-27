@@ -1,7 +1,8 @@
-package com.codecool.marsexploration.mapexplorer.exploration;
+package com.codecool.marsexploration.mapexplorer.simulation.roveraction;
 
 import com.codecool.marsexploration.mapexplorer.Configuration.Resource;
 import com.codecool.marsexploration.mapexplorer.maploader.model.Coordinate;
+import com.codecool.marsexploration.mapexplorer.simulation.SimulationContext;
 
 import java.util.*;
 
@@ -83,9 +84,9 @@ public class Scan implements RoverAction{
     private void scanTiles(SimulationContext context, List<Resource> resources) {
         for (Coordinate coordinate : tilesToScan) {
             if(context.getMap().inBounds(coordinate)) {
-                    if (context.map.getByCoordinate(coordinate).equals(Resource.MINERALS.getSymbol())) {
+                    if (context.getMap().getByCoordinate(coordinate).equals(Resource.MINERALS.getSymbol())) {
                             amountOfMineralsFound++;
-                    } else if (context.map.getByCoordinate(coordinate).equals(Resource.WATER.getSymbol())) {
+                    } else if (context.getMap().getByCoordinate(coordinate).equals(Resource.WATER.getSymbol())) {
                             amountOfWaterFound++;
                         }
                     }

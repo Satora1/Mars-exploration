@@ -1,12 +1,12 @@
-package com.codecool.marsexploration.mapexplorer.exploration;
+package com.codecool.marsexploration.mapexplorer.simulation.roveraction;
 
-import com.codecool.marsexploration.mapexplorer.exploration.analyzers.OutcomeAnalyzer;
-import com.codecool.marsexploration.mapexplorer.exploration.routines.Routine;
+import com.codecool.marsexploration.mapexplorer.simulation.SimulationContext;
+import com.codecool.marsexploration.mapexplorer.simulation.analyzers.OutcomeAnalyzer;
+import com.codecool.marsexploration.mapexplorer.simulation.roveraction.RoverAction;
 
 import java.util.List;
-import java.util.Optional;
 
-public class Analyze implements RoverAction{
+public class Analyze implements RoverAction {
 
     private final List<OutcomeAnalyzer> analyzersList;
 

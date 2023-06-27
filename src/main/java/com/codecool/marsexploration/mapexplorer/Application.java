@@ -2,8 +2,7 @@ package com.codecool.marsexploration.mapexplorer;
 
 import com.codecool.marsexploration.mapexplorer.Configuration.Config;
 import com.codecool.marsexploration.mapexplorer.Configuration.Resource;
-import com.codecool.marsexploration.mapexplorer.exploration.ExplorationSimulation;
-import com.codecool.marsexploration.mapexplorer.maploader.MapLoader;
+import com.codecool.marsexploration.mapexplorer.simulation.ExplorationSimulation;
 import com.codecool.marsexploration.mapexplorer.maploader.model.Coordinate;
 import com.codecool.marsexploration.mapexplorer.rovers.MarsRover;
 
