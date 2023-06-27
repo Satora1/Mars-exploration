@@ -6,11 +6,11 @@ import com.codecool.marsexploration.mapexplorer.simulation.routines.Routine;
 
 import java.util.List;
 
-public class Movement implements RoverAction {
+public class ExplorationMovement implements RoverAction {
     private final List<Routine> routinesList;
     private ExploringRoutine explore;
 
-    public Movement(List<Routine> routinesList, ExploringRoutine explore) {
+    public ExplorationMovement(List<Routine> routinesList, ExploringRoutine explore) {
         this.routinesList = routinesList;
         this.explore = explore;
     }
