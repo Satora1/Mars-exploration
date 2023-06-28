@@ -2,6 +2,7 @@ package com.codecool.marsexploration.mapexplorer.simulation;
 
 import com.codecool.marsexploration.mapexplorer.logger.ConsoleLogger;
 import com.codecool.marsexploration.mapexplorer.logger.FileLogger;
+import com.codecool.marsexploration.mapexplorer.rovers.MarsRover;
 
 public class MissionLogger {
     private FileLogger fLog;
@@ -12,10 +13,10 @@ public class MissionLogger {
         cLog = new ConsoleLogger();
     }
 
-    public void logStep(SimulationContext simulationContext) {
+    public void logStep(SimulationContext simulationContext, MarsRover rover) {
         String message = "STEP " + simulationContext.getStepsNumber() +
-                "; EVENT position; UNIT " + simulationContext.getRover().getId() +
-                "; POSITION " + simulationContext.getRover().getCurrentPosition().toString();
+                "; EVENT position; UNIT " + rover.getId() +
+                "; POSITION " + rover.getCurrentPosition().toString();
         cLog.log(message);
         fLog.log(message);
     }

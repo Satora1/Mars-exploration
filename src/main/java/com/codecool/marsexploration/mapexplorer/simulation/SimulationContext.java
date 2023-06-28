@@ -6,12 +6,13 @@ import com.codecool.marsexploration.mapexplorer.maploader.model.Map;
 import com.codecool.marsexploration.mapexplorer.rovers.MarsRover;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SimulationContext {
     int stepsNumber;
     int stepsToTimeout;
-    MarsRover rover;
+    List<MarsRover> rover;
     Coordinate shipCoordinate;
     private final Map map;
     List<Resource> resources;
@@ -30,7 +31,8 @@ public class SimulationContext {
             ExplorationOutcome outcome){
         this.stepsNumber = steps;
         this.stepsToTimeout = timeout;
-        this.rover = rover;
+        this.rover = new ArrayList<>();
+        this.rover.add(rover);
         this.shipCoordinate = shipCoord;
         this.map = map;
         this.resources = resources;
@@ -39,7 +41,7 @@ public class SimulationContext {
     public int getStepsNumber(){return stepsNumber;}
     public void raiseStep(){stepsNumber++;}
     public int getStepsToTimeout(){return stepsToTimeout;}
-    public MarsRover getRover(){return rover;}
+    public List<MarsRover> getRover(){return rover;}
     public Coordinate getShipsCoordinate(){return shipCoordinate;}
     public Map getMap(){return map;}
     public List<Resource> getResources(){return resources;}
