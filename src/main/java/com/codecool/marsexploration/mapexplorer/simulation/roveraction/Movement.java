@@ -3,10 +3,6 @@ package com.codecool.marsexploration.mapexplorer.simulation.roveraction;
 import com.codecool.marsexploration.mapexplorer.rovers.MarsRover;
 import com.codecool.marsexploration.mapexplorer.simulation.SimulationContext;
 import com.codecool.marsexploration.mapexplorer.simulation.routines.ExploringRoutine;
-import com.codecool.marsexploration.mapexplorer.simulation.routines.Routine;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Movement implements RoverAction {
 

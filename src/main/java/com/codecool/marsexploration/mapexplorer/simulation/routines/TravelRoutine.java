@@ -1,6 +1,7 @@
 package com.codecool.marsexploration.mapexplorer.simulation.routines;
 
 import com.codecool.marsexploration.mapexplorer.maploader.model.Coordinate;
+import com.codecool.marsexploration.mapexplorer.rovers.MarsRover;
 import com.codecool.marsexploration.mapexplorer.simulation.ExplorationOutcome;
 import com.codecool.marsexploration.mapexplorer.simulation.SimulationContext;
 
@@ -13,9 +14,9 @@ public class TravelRoutine implements Routine {
     }
 
     @Override
-    public void performMovement(SimulationContext context) {
+    public void performMovement(SimulationContext context, MarsRover rover) {
 
-        Coordinate roverCurrentCoordinate = context.getRover().getCurrentPosition();
+        Coordinate roverCurrentCoordinate = rover.getCurrentPosition();
 
         Coordinate mapDimension = new Coordinate(context.getMap().getDimensionY(), context.getMap().getDimensionX());
 
@@ -35,7 +36,7 @@ public class TravelRoutine implements Routine {
                     yCoordinate++;
                 }
 
-                context.getRover().setCurrentPosition(new Coordinate(xCoordinate, yCoordinate));
+                rover.setCurrentPosition(new Coordinate(xCoordinate, yCoordinate));
 
             }
             else {
@@ -61,7 +62,7 @@ public class TravelRoutine implements Routine {
         this.destination = destination;
     }
 
-    public boolean checkIfRoverReachedCoordinates(SimulationContext context, Coordinate destination) {
-        return context.getRover().getCurrentPosition().equals(destination);
+    public boolean checkIfRoverReachedCoordinates(SimulationContext context, Coordinate destination, MarsRover rover) {
+        return rover.getCurrentPosition().equals(destination);
     }
 }
