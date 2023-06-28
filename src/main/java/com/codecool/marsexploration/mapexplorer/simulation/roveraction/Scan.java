@@ -2,6 +2,7 @@ package com.codecool.marsexploration.mapexplorer.simulation.roveraction;
 
 import com.codecool.marsexploration.mapexplorer.Configuration.Resource;
 import com.codecool.marsexploration.mapexplorer.maploader.model.Coordinate;
+import com.codecool.marsexploration.mapexplorer.rovers.MarsRover;
 import com.codecool.marsexploration.mapexplorer.simulation.SimulationContext;
 
 import java.util.*;
@@ -17,10 +18,10 @@ public class Scan implements RoverAction{
 
 
     @Override
-    public void roverDoAction(SimulationContext context) {
+    public void roverDoAction(SimulationContext context, MarsRover rover) {
 
 
-        int roverSightSize = context.getRover().getSight();
+        int roverSightSize = rover.getSight();
 
         if (roverSightSize <= 0) {
             throw new IllegalStateException("Sight of the Rover can't be less than 1. It must be broken!");
@@ -28,7 +29,7 @@ public class Scan implements RoverAction{
 
         int scanRoundCounter = 0;
 
-        Coordinate scanStartingPoint = context.getRover().getCurrentPosition();
+        Coordinate scanStartingPoint = rover.getCurrentPosition();
 
         Coordinate[] tilesAdjacentToScanStartingPoint = generateCoordinates(scanStartingPoint);
 

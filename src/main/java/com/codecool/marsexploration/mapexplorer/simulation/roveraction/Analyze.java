@@ -1,5 +1,6 @@
 package com.codecool.marsexploration.mapexplorer.simulation.roveraction;
 
+import com.codecool.marsexploration.mapexplorer.rovers.MarsRover;
 import com.codecool.marsexploration.mapexplorer.simulation.SimulationContext;
 import com.codecool.marsexploration.mapexplorer.simulation.analyzers.OutcomeAnalyzer;
 import com.codecool.marsexploration.mapexplorer.simulation.roveraction.RoverAction;
@@ -15,7 +16,7 @@ public class Analyze implements RoverAction {
     }
 
     @Override
-    public void roverDoAction(SimulationContext context) {
+    public void roverDoAction(SimulationContext context, MarsRover rover) {
         if (analyzersList.stream().anyMatch(outcomeAnalyzer -> outcomeAnalyzer.checkforOutcome(context))) {
             System.out.println("Mission ends. Return to the ship.");
         }

@@ -1,5 +1,6 @@
 package com.codecool.marsexploration.mapexplorer.simulation.routines;
 
+import com.codecool.marsexploration.mapexplorer.rovers.MarsRover;
 import com.codecool.marsexploration.mapexplorer.simulation.ExplorationOutcome;
 import com.codecool.marsexploration.mapexplorer.simulation.SimulationContext;
 import com.codecool.marsexploration.mapexplorer.maploader.model.Coordinate;
@@ -8,9 +9,9 @@ public class ReturningRoutine implements Routine {
 
 
     @Override
-    public void performMovement(SimulationContext context) {
+    public void performMovement(SimulationContext context, MarsRover rover) {
         Coordinate shipCoordinate = context.getShipsCoordinate();
-        context.getRover().setCurrentPosition(shipCoordinate);
+        rover.setCurrentPosition(shipCoordinate);
     }
 
     @Override

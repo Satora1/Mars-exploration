@@ -1,5 +1,6 @@
 package com.codecool.marsexploration.mapexplorer.simulation.routines;
 
+import com.codecool.marsexploration.mapexplorer.rovers.MarsRover;
 import com.codecool.marsexploration.mapexplorer.simulation.ExplorationOutcome;
 import com.codecool.marsexploration.mapexplorer.simulation.SimulationContext;
 import com.codecool.marsexploration.mapexplorer.maploader.model.Coordinate;
@@ -12,13 +13,13 @@ public class ExploringRoutine implements Routine {
     private static final Random random = new Random();
 
     @Override
-    public void performMovement(SimulationContext context) {
-        moveRover(context);
+    public void performMovement(SimulationContext context, MarsRover rover) {
+        moveRover(context, rover);
     }
 
-    private static void moveRover(SimulationContext context) {
+    private static void moveRover(SimulationContext context, MarsRover rover) {
 
-        Coordinate roverCurrentCoordinate = context.getRover().getCurrentPosition();
+        Coordinate roverCurrentCoordinate = rover.getCurrentPosition();
 
         Coordinate mapDimension = new Coordinate(context.getMap().getDimensionY(), context.getMap().getDimensionX());
 
@@ -44,7 +45,7 @@ public class ExploringRoutine implements Routine {
                 }
                 newCoordinateIndex = random.nextInt(possibleCoordinates + 1);
             }
-            context.getRover().setCurrentPosition(newRoverCoordinateList.get(newCoordinateIndex));
+            rover.setCurrentPosition(newRoverCoordinateList.get(newCoordinateIndex));
             visitedTiles.add(newRoverCoordinateList.get(newCoordinateIndex));
         }
         else {
