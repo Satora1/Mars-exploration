@@ -54,8 +54,8 @@ public class VisualPanel extends JPanel implements Runnable {
     }
 
     public void update() {
-        x = MR.getCurrentPosition().X() * tileSize;
-        y = MR.getCurrentPosition().Y() * tileSize;
+        y = MR.getCurrentPosition().X() * tileSize;
+        x = MR.getCurrentPosition().Y() * tileSize;
 
         // Sprawdzenie granic ekranu
         if (rectangle.x + rectangle.width >= screenWidth || rectangle.x <= 0) {
@@ -73,7 +73,7 @@ public class VisualPanel extends JPanel implements Runnable {
             }
         }
 
-        rectangle.setLocation(x, y);
+        rectangle.setLocation(y, x);
     }
 
     public void buildCommandCenter() {
