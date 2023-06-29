@@ -19,6 +19,9 @@ public class VisualPanel extends JPanel implements Runnable {
 
     private boolean showCommandCenter = false;
     private boolean commandCenterBuilt = false;
+
+    Sound soundEffect = new Sound();
+
     Sound music = new Sound();
     public final int maxWorldCol = 32;
     public final int maxWorldRow = 23;
@@ -30,7 +33,8 @@ public class VisualPanel extends JPanel implements Runnable {
     MarsRover MR;
     Thread simulationThread;//keeps program runing until you stop
     TileMenager tileM = new TileMenager(this);
-CommandCenter cc ;
+    boolean soundPlayed = false;
+    CommandCenter cc;
     Rectangle rectangle = new Rectangle(6, 6, tileSize, tileSize);
 
 
@@ -60,16 +64,22 @@ CommandCenter cc ;
         if (rectangle.y + rectangle.height >= screenHeight || rectangle.y <= 0) {
             speedY *= -1; // Odwrócenie kierunku w osi Y, jeśli prostokąt dotyka górnej lub dolnej krawędzi ekranu
         }
-        if (MR.getCurrentPosition().X() == 10 && MR.getCurrentPosition().Y() == 10 ) {
+        if (MR.getCurrentPosition().X() == 10 && MR.getCurrentPosition().Y() == 10) {
             showCommandCenter = true;
             buildCommandCenter();
+            if (!soundPlayed) {
+                playSE(1);
+                soundPlayed = true; // Ustaw flagę, że dźwięk został odtworzony
+            }
         }
+
         rectangle.setLocation(x, y);
     }
 
-    public void buildCommandCenter(){
+    public void buildCommandCenter() {
         commandCenterBuilt = true;
     }
+
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
@@ -82,8 +92,8 @@ CommandCenter cc ;
             Image scaled = tileM.tile[6].image.getScaledInstance(commandCenter.width, commandCenter.height, Image.SCALE_SMOOTH);
             g2.drawImage(scaled, commandCenter.x, commandCenter.y, null);
         }
-    }
 
+    }
 
 
     public void playMusic(int i) {
@@ -92,6 +102,13 @@ CommandCenter cc ;
         music.play();
         music.loop();
 
+    }
+
+
+    public void playSE(int i) {
+        soundEffect.setFile(i);
+        music.setVolume(0.1f);
+        soundEffect.play();
     }
 
     @Override

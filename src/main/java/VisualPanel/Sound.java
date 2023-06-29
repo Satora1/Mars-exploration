@@ -12,6 +12,7 @@ public class Sound {
 
     public Sound() {
         soundURl[0] = getClass().getResource("/TILES/space.wav");
+        soundURl[1] = getClass().getResource("/TILES/baseSound.wav");
 
     }
 
