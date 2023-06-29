@@ -1,13 +1,16 @@
 package com.codecool.marsexploration.mapexplorer.simulation;
 
 import com.codecool.marsexploration.mapexplorer.Configuration.Resource;
+import com.codecool.marsexploration.mapexplorer.buildings.Building;
 import com.codecool.marsexploration.mapexplorer.maploader.model.Coordinate;
 import com.codecool.marsexploration.mapexplorer.maploader.model.Map;
 import com.codecool.marsexploration.mapexplorer.rovers.MarsRover;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 public class SimulationContext {
     int stepsNumber;
@@ -16,10 +19,13 @@ public class SimulationContext {
     Coordinate shipCoordinate;
     private final Map map;
     List<Resource> resources;
+    List<Coordinate> foundWater;
+    List<Coordinate> foundMineral;
     ExplorationOutcome outcome;
 
     private int mineralsAmount = 0;
     private int waterAmount = 0;
+    private List<Building> buildingList;
 
     public SimulationContext(
             int steps,
@@ -37,11 +43,17 @@ public class SimulationContext {
         this.map = map;
         this.resources = resources;
         this.outcome = outcome;
+
+        buildingList = new ArrayList<Building>();
     }
     public int getStepsNumber(){return stepsNumber;}
     public void raiseStep(){stepsNumber++;}
     public int getStepsToTimeout(){return stepsToTimeout;}
+
     public List<MarsRover> getRover(){return rover;}
+    public void addRover(MarsRover rover){
+        this.rover.add(rover);
+    }
     public Coordinate getShipsCoordinate(){return shipCoordinate;}
     public Map getMap(){return map;}
     public List<Resource> getResources(){return resources;}
@@ -49,6 +61,7 @@ public class SimulationContext {
     public ExplorationOutcome getOutcome() {return outcome;}
 
     public void setOutcome(ExplorationOutcome newOutcome) {this.outcome = newOutcome;}
+
 
     public int getMineralsAmount() {
         return mineralsAmount;
@@ -66,4 +79,24 @@ public class SimulationContext {
         this.waterAmount = this.waterAmount + waterAmount;
     }
 
+
+    public void addBuilding(Building building){buildingList.add(building);}
+
+    public List<Building> getBuildingList() {
+        return buildingList;
+    }
+
+    public void addFoundResource(Resource resource, Coordinate coordinate) {
+        if (Objects.equals(resource.getSymbol(), Resource.WATER.getSymbol())) {
+            foundWater.add(coordinate);
+        } else if (Objects.equals(resource.getSymbol(), Resource.MINERALS.getSymbol())) {
+            foundMineral.add(coordinate);
+        }
+    }
+    public Coordinate popWater(){
+        return foundWater.remove(foundWater.lastIndexOf(foundWater));
+    }
+    public Coordinate popMineral(){
+        return foundMineral.remove(foundMineral.lastIndexOf(foundMineral));
+    }
 }

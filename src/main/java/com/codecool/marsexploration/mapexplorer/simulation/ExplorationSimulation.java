@@ -1,6 +1,7 @@
 package com.codecool.marsexploration.mapexplorer.simulation;
 
 import com.codecool.marsexploration.mapexplorer.Configuration.Config;
+import com.codecool.marsexploration.mapexplorer.rovers.RoverAi;
 import com.codecool.marsexploration.mapexplorer.simulation.analyzers.OutcomeAnalyzer;
 import com.codecool.marsexploration.mapexplorer.simulation.analyzers.SuccessAnalyzer;
 import com.codecool.marsexploration.mapexplorer.simulation.analyzers.TimeoutAnalyzer;
@@ -18,6 +19,7 @@ import com.codecool.marsexploration.mapexplorer.simulation.roveraction.Scan;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Queue;
 
 public class ExplorationSimulation {
@@ -25,6 +27,7 @@ public class ExplorationSimulation {
     private SimulationContext simContext;
     private Queue <RoverAction> steps;
     private MissionLogger missionLogger;
+    RoverDeployer roverDeployer;
 
     public ExplorationSimulation(Config configuration, MarsRover rover){
 
@@ -41,7 +44,7 @@ public class ExplorationSimulation {
                 configuration.resources(),
                 ExplorationOutcome.UNRESOLVED);
 
-        RoverDeployer roverDeployer = new RoverDeployer();
+        roverDeployer = new RoverDeployer();
         roverDeployer.placeRover(rover, simContext.getMap(), configuration);
 
 
@@ -58,6 +61,15 @@ public class ExplorationSimulation {
             simContext.getRover().forEach(e->{
                 e.runRover(simContext);
                 missionLogger.logStep(simContext, e);
+            });
+            simContext.getBuildingList().forEach(e->{
+                Optional<MarsRover> newRover = e.work((simContext));
+                if(newRover.isPresent()) {
+                    roverDeployer.placeRover(newRover.get(), simContext.getMap(), e);
+                    newRover.get().setAi(RoverAi.Scavenge);
+                    newRover.get().setTarget(e.getBaseCoordinate(), simContext.popWater());
+                    simContext.addRover(newRover.get());
+                }
             });
 
 

@@ -21,7 +21,7 @@ public abstract class Building {
     protected static final int ROVER_COST = 2;
 
 
-    abstract Optional<MarsRover> work(SimulationContext context);
+    public abstract Optional<MarsRover> work(SimulationContext context);
 
     public abstract Coordinate getBaseCoordinate();
 
