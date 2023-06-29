@@ -14,8 +14,7 @@ public class VisualPanel extends JPanel implements Runnable {
     final int maxScreenRow = 23;
     final int screenWidth = tileSize * maxScreenCol;//
     final int screenHeight = tileSize * maxScreenRow;//
-    public Entity lazik01[] = new Entity[20];
-    private MarsRover marsRover;
+    Sound music = new Sound();
     public final int maxWorldCol = 32;
     public final int maxWorldRow = 23;
     public int FPS = 60;
@@ -68,8 +67,17 @@ public class VisualPanel extends JPanel implements Runnable {
 
     }
 
+    public void playMusic(int i) {
+        music.setFile(i);
+        music.setVolume(0.1f);
+        music.play();
+        music.loop();
+
+    }
+
     @Override
     public void run() {
+        playMusic(0);
         double drawInterval = 1000000000 / FPS;
         double delta = 0;
         long lastTime = System.nanoTime();

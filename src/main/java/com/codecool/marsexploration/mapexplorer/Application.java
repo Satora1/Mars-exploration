@@ -17,23 +17,15 @@ public class Application {
     public static void main(String[] args) {
 
 //update wszystkich obiektów bez ruchu
-
-
-
         String mapFile = workDir + "/resources/exploration-0.map";
         List<Resource> resourceList = new ArrayList<>();
         resourceList.add(Resource.WATER);
         resourceList.add(Resource.MINERALS);
         Coordinate landingSpot = new Coordinate(6, 6);
         int timeoutSteps = 50;
-
         Config config = new Config(mapFile, landingSpot, resourceList, timeoutSteps);
         MarsRover rover = new MarsRover("Rover-1", 3);
-
         ExplorationSimulation simulation = new ExplorationSimulation(config, rover);
-
-
-
         JFrame window = new JFrame();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(true);
@@ -44,13 +36,8 @@ public class Application {
         window.pack();
         window.setLocationRelativeTo(null);
         window.setVisible(true);
-
         vp.StartSimulationThread();
         simulation.run();
-
-
-
-
         // Add your code here
     }
 }
