@@ -50,21 +50,25 @@ public class ExplorationSimulation {
     }
 
     public void run(){
-        while(simContext.stepsToTimeout > simContext.stepsNumber){
+        while (simContext.stepsToTimeout > simContext.stepsNumber) {
             if (simContext.getOutcome() != ExplorationOutcome.UNRESOLVED) {
                 System.out.println("Mission end.");
                 break;
             }
-            simContext.getRover().forEach(e->{
+            simContext.getRover().forEach(e -> {
                 e.runRover(simContext);
                 missionLogger.logStep(simContext, e);
             });
 
-
             simContext.raiseStep();
+
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
         missionLogger.logOutcome(simContext);
     }
-
 
 }
