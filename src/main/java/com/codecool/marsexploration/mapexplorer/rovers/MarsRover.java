@@ -7,10 +7,8 @@ import com.codecool.marsexploration.mapexplorer.simulation.SimulationContext;
 import com.codecool.marsexploration.mapexplorer.simulation.analyzers.OutcomeAnalyzer;
 import com.codecool.marsexploration.mapexplorer.simulation.analyzers.SuccessAnalyzer;
 import com.codecool.marsexploration.mapexplorer.simulation.analyzers.TimeoutAnalyzer;
-import com.codecool.marsexploration.mapexplorer.simulation.roveraction.Analyze;
-import com.codecool.marsexploration.mapexplorer.simulation.roveraction.Movement;
-import com.codecool.marsexploration.mapexplorer.simulation.roveraction.RoverAction;
-import com.codecool.marsexploration.mapexplorer.simulation.roveraction.Scan;
+import com.codecool.marsexploration.mapexplorer.simulation.routines.TravelRoutine;
+import com.codecool.marsexploration.mapexplorer.simulation.roveraction.*;
 
 import javax.swing.text.Position;
 import java.util.ArrayList;
@@ -19,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 import static com.codecool.marsexploration.mapexplorer.rovers.RoverAi.Explore;
+import static com.codecool.marsexploration.mapexplorer.rovers.RoverAi.Scavenge;
 
 public class MarsRover {
 
@@ -29,7 +28,9 @@ public class MarsRover {
     List<Coordinate> resourceCoordinates = new ArrayList<>();
 
     Map<String, RoverAction> actions;
-
+    Coordinate target1;
+    Coordinate target2;
+    int currentTarget = 1;
 
     public MarsRover(String id, int sight) {
         this.id = id;
@@ -44,6 +45,8 @@ public class MarsRover {
         analyzers.add(new TimeoutAnalyzer());
 
         actions.put("Analyze", new Analyze(analyzers));
+        actions.put("Build", new Build());
+
         currentMotive = Explore;
 
     }
@@ -57,13 +60,35 @@ public class MarsRover {
                 break;
             }
             case Build -> {
+
+                if(currentPosition.equals(target1)){
+                    actions.get("Build").roverDoAction(simContext, this);
+                    currentMotive = Scavenge;
+                    System.out.println("Rover: Go and Scavenge!");
+                }
+                else{
+                    actions.get("Travel to target1").roverDoAction(simContext, this);
+                    System.out.println("Travel to target1");
+                }
                 break;
             }
             case Scavenge -> {
+                if(currentPosition.equals(target1) && currentTarget==1){
+                    System.out.println("----------------At target 1------------------");
+                    currentTarget = 2;
+                } else if (currentPosition.equals(target2)&& currentTarget==2) {
+                    System.out.println("----------------At target 2------------------");
+                    currentTarget = 1;
+                }
+                else{
+                    actions.get("Travel to target" + currentTarget).roverDoAction(simContext, this);
+                }
 
             }
         }
     }
+
+    public void setAi(RoverAi ai){currentMotive = ai;}
 
     public String getId() {
         return id;
@@ -87,5 +112,16 @@ public class MarsRover {
 
     public void addResourceCoordinate(Coordinate coordinate) {
         resourceCoordinates.add(coordinate);
+    }
+
+    public void setTarget(Coordinate target){
+        target1 = target;
+        actions.put("Travel to target1", new GoToMovement(new TravelRoutine(target1)));
+    }
+    public void setTarget(Coordinate target1, Coordinate target2){
+        this.target1 = target1;
+        this.target2 = target2;
+        actions.put("Travel to target1", new GoToMovement(new TravelRoutine(target1)));
+        actions.put("Travel to target2", new GoToMovement(new TravelRoutine(target2)));
     }
 }
