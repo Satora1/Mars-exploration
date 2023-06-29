@@ -82,7 +82,7 @@ public class ExplorationSimulation {
             simContext.raiseStep();
 
             try {
-                Thread.sleep(1000);
+                Thread.sleep(800);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

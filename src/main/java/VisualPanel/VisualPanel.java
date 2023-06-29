@@ -1,5 +1,7 @@
 package VisualPanel;
 
+import com.codecool.marsexploration.mapexplorer.buildings.CommandCenter;
+import com.codecool.marsexploration.mapexplorer.maploader.model.Coordinate;
 import com.codecool.marsexploration.mapexplorer.rovers.MarsRover;
 
 import javax.swing.*;
@@ -14,6 +16,9 @@ public class VisualPanel extends JPanel implements Runnable {
     final int maxScreenRow = 23;
     final int screenWidth = tileSize * maxScreenCol;//
     final int screenHeight = tileSize * maxScreenRow;//
+
+    private boolean showCommandCenter = false;
+    private boolean commandCenterBuilt = false;
     Sound music = new Sound();
     public final int maxWorldCol = 32;
     public final int maxWorldRow = 23;
@@ -25,8 +30,9 @@ public class VisualPanel extends JPanel implements Runnable {
     MarsRover MR;
     Thread simulationThread;//keeps program runing until you stop
     TileMenager tileM = new TileMenager(this);
-
+CommandCenter cc ;
     Rectangle rectangle = new Rectangle(6, 6, tileSize, tileSize);
+
 
     public VisualPanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -54,9 +60,16 @@ public class VisualPanel extends JPanel implements Runnable {
         if (rectangle.y + rectangle.height >= screenHeight || rectangle.y <= 0) {
             speedY *= -1; // Odwrócenie kierunku w osi Y, jeśli prostokąt dotyka górnej lub dolnej krawędzi ekranu
         }
+        if (MR.getCurrentPosition().X() == 10 && MR.getCurrentPosition().Y() == 10 ) {
+            showCommandCenter = true;
+            buildCommandCenter();
+        }
         rectangle.setLocation(x, y);
     }
 
+    public void buildCommandCenter(){
+        commandCenterBuilt = true;
+    }
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
@@ -64,8 +77,14 @@ public class VisualPanel extends JPanel implements Runnable {
         g2.setColor(Color.white);
         Image scaledImage = tileM.tile[5].image.getScaledInstance(rectangle.width, rectangle.height, Image.SCALE_SMOOTH);
         g2.drawImage(scaledImage, rectangle.x, rectangle.y, null);
-
+        if (showCommandCenter) {
+            Rectangle commandCenter = new Rectangle(10 * tileSize, 10 * tileSize, tileSize, tileSize);
+            Image scaled = tileM.tile[6].image.getScaledInstance(commandCenter.width, commandCenter.height, Image.SCALE_SMOOTH);
+            g2.drawImage(scaled, commandCenter.x, commandCenter.y, null);
+        }
     }
+
+
 
     public void playMusic(int i) {
         music.setFile(i);
