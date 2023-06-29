@@ -38,6 +38,7 @@ public class Application {
         window.setVisible(true);
         vp.StartSimulationThread();
         simulation.run();
+        //
         // Add your code here
     }
 }
