@@ -1,6 +1,7 @@
 package com.codecool.marsexploration.mapexplorer.simulation;
 
 import com.codecool.marsexploration.mapexplorer.Configuration.Config;
+import com.codecool.marsexploration.mapexplorer.maploader.model.Coordinate;
 import com.codecool.marsexploration.mapexplorer.rovers.RoverAi;
 import com.codecool.marsexploration.mapexplorer.simulation.analyzers.OutcomeAnalyzer;
 import com.codecool.marsexploration.mapexplorer.simulation.analyzers.SuccessAnalyzer;
@@ -27,6 +28,8 @@ public class ExplorationSimulation {
     private SimulationContext simContext;
     private Queue <RoverAction> steps;
     private MissionLogger missionLogger;
+
+    private boolean buildCommandCenter = true;
     RoverDeployer roverDeployer;
 
     public ExplorationSimulation(Config configuration, MarsRover rover){
@@ -55,8 +58,12 @@ public class ExplorationSimulation {
     public void run(){
         while(simContext.stepsToTimeout > simContext.stepsNumber){
             if (simContext.getOutcome() != ExplorationOutcome.UNRESOLVED) {
-                System.out.println("Mission end.");
-                break;
+                if(simContext.getOutcome() == ExplorationOutcome.COLONIZABLE && buildCommandCenter){
+                    simContext.getRover().get(0).setAi(RoverAi.Build);
+                    simContext.getRover().get(0).setTarget(new Coordinate(10, 10));
+                    System.out.println("Rover: Build a command center");
+                    buildCommandCenter = false;
+                }
             }
             simContext.getRover().forEach(e->{
                 e.runRover(simContext);

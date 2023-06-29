@@ -30,7 +30,7 @@ public class MarsRover {
     Map<String, RoverAction> actions;
     Coordinate target1;
     Coordinate target2;
-
+    int currentTarget = 1;
 
     public MarsRover(String id, int sight) {
         this.id = id;
@@ -45,6 +45,8 @@ public class MarsRover {
         analyzers.add(new TimeoutAnalyzer());
 
         actions.put("Analyze", new Analyze(analyzers));
+        actions.put("Build", new Build());
+
         currentMotive = Explore;
 
     }
@@ -62,19 +64,25 @@ public class MarsRover {
                 if(currentPosition.equals(target1)){
                     actions.get("Build").roverDoAction(simContext, this);
                     currentMotive = Scavenge;
+                    System.out.println("Rover: Go and Scavenge!");
                 }
                 else{
                     actions.get("Travel to target1").roverDoAction(simContext, this);
+                    System.out.println("Travel to target1");
                 }
                 break;
             }
             case Scavenge -> {
-                if(currentPosition.equals(target1)){
-
-                } else if (currentPosition.equals(target2)) {
-
+                if(currentPosition.equals(target1) && currentTarget==1){
+                    System.out.println("----------------At target 1------------------");
+                    currentTarget = 2;
+                } else if (currentPosition.equals(target2)&& currentTarget==2) {
+                    System.out.println("----------------At target 2------------------");
+                    currentTarget = 1;
                 }
-                actions.get("")
+                else{
+                    actions.get("Travel to target" + currentTarget).roverDoAction(simContext, this);
+                }
 
             }
         }

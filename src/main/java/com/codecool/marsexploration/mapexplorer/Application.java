@@ -18,7 +18,7 @@ public class Application {
         resourceList.add(Resource.WATER);
         resourceList.add(Resource.MINERALS);
         Coordinate landingSpot = new Coordinate(6, 6);
-        int timeoutSteps = 50;
+        int timeoutSteps = 500;
 
         Config config = new Config(mapFile, landingSpot, resourceList, timeoutSteps);
         MarsRover rover = new MarsRover("Rover-1", 3);

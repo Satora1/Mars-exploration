@@ -43,6 +43,8 @@ public class SimulationContext {
         this.map = map;
         this.resources = resources;
         this.outcome = outcome;
+        this.foundWater = new ArrayList<>();
+        this.foundMineral = new ArrayList<>();
 
         buildingList = new ArrayList<Building>();
     }
@@ -94,7 +96,8 @@ public class SimulationContext {
         }
     }
     public Coordinate popWater(){
-        return foundWater.remove(foundWater.lastIndexOf(foundWater));
+        System.out.println("-------------------------------- "+ foundWater.size());
+        return foundWater.remove(foundWater.size()-1);
     }
     public Coordinate popMineral(){
         return foundMineral.remove(foundMineral.lastIndexOf(foundMineral));

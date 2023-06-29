@@ -27,6 +27,8 @@ public abstract class Building {
 
     protected boolean checkIfBuildingIsFinished() {
 
+        return true;
+        /*
         if (status) {
             return true;
         }
@@ -37,7 +39,7 @@ public abstract class Building {
             waterOnStock = waterOnStock - type.getWaterCost();
             return true;
         }
-        return false;
+        return false;*/
     }
 
 

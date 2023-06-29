@@ -87,8 +87,10 @@ public class Scan implements RoverAction{
             if(context.getMap().inBounds(coordinate)) {
                     if (context.getMap().getByCoordinate(coordinate).equals(Resource.MINERALS.getSymbol())) {
                             amountOfMineralsFound++;
+                            context.addFoundResource(Resource.MINERALS, coordinate);
                     } else if (context.getMap().getByCoordinate(coordinate).equals(Resource.WATER.getSymbol())) {
                             amountOfWaterFound++;
+                            context.addFoundResource(Resource.WATER, coordinate);
                         }
                     }
             }
