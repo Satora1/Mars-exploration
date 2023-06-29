@@ -56,7 +56,7 @@ public class ExplorationSimulation {
     }
 
     public void run(){
-        while(simContext.stepsToTimeout > simContext.stepsNumber){
+        while (simContext.stepsToTimeout > simContext.stepsNumber) {
             if (simContext.getOutcome() != ExplorationOutcome.UNRESOLVED) {
                 if(simContext.getOutcome() == ExplorationOutcome.COLONIZABLE && buildCommandCenter){
                     simContext.getRover().get(0).setAi(RoverAi.Build);
@@ -65,7 +65,7 @@ public class ExplorationSimulation {
                     buildCommandCenter = false;
                 }
             }
-            simContext.getRover().forEach(e->{
+            simContext.getRover().forEach(e -> {
                 e.runRover(simContext);
                 missionLogger.logStep(simContext, e);
             });
@@ -79,11 +79,15 @@ public class ExplorationSimulation {
                 }
             });
 
-
             simContext.raiseStep();
+
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
         missionLogger.logOutcome(simContext);
     }
-
 
 }
