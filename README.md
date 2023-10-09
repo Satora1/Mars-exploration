@@ -65,8 +65,7 @@ Update node package manager with this command:
 
 ## Usage
 
-![](src/photos/how-to-help.png)
-![](src/photos/kids.png)
+![image](https://github.com/CodecoolGlobal/mars-exploration-3-java-AceOfSnakes60/assets/116550155/510ff4a3-c808-4d8a-997f-61552edd40d5)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
