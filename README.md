@@ -73,7 +73,7 @@ Update node package manager with this command:
 
 ## Contact
 
-Project Link: (https://github.com/CodecoolGlobal/mars-exploration-3-java-AceOfSnakes60)https://github.com/CodecoolGlobal/mars-exploration-3-java-AceOfSnakes60
+Project Link: (https://github.com/CodecoolGlobal/mars-exploration-3-java-AceOfSnakes60)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
